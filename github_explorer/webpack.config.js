@@ -1,5 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const reactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -15,19 +16,28 @@ module.exports = {
         extensions: ['.js', '.jsx'],
     },
     devServer: { // servidor do webpack para reload da aplicação
-        static: path.resolve(__dirname, 'public', 'index.html')
+        static: path.resolve(__dirname, 'public', 'index.html'),
+        hot: true
     },
     plugins: [ // plugin para add o js no html automaticamente
+        isDevelopment && new reactRefreshWebpackPlugin(), // plugin para recarregar sem perder as variaveis de estado
         new htmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html')
         })
-    ],
+    ].filter(Boolean),
     module: {
         rules: [
             { // loader para converter react em js que o browser entende
                 test: /\.jsx$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: [
+                            isDevelopment && require.resolve('react-refresh/babel')
+                        ].filter(Boolean)
+                    }
+                }
             },
             { // loader para converter sass em css
                 test: /\.scss$/,
