@@ -4,10 +4,17 @@ import { RepositoryItem } from "./RepositoryItem";
 
 import '../styles/repositories.scss';
 
-export function RepositoryList() {
-    const [repositories, setRepositories] = useState([]);
+interface Repository {
+    id: number;
+    name: string;
+    description: string;
+    html_url: string;
+}
 
-    useEffect(() => { // função de efeito de chamada ou nesse caso quando o componente é renderizado
+export function RepositoryList() {
+    const [repositories, setRepositories] = useState<Repository[]>([]);
+
+    useEffect(() => { // função de efeito de chamada ou nesse caso quando o componente é renderizado 
         fetch('https://api.github.com/orgs/rocketseat/repos')
             .then(response => response.json())
             .then(data => setRepositories(data));
