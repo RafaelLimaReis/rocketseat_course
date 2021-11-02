@@ -1,10 +1,10 @@
 export function RepositoryItem(props) {
-    const {name, description, link} = props.repository; //desestruturação do objeto dentro das props
+    const {name, description, html_url} = props.repository; //desestruturação do objeto dentro das props
     return (
         <li>
             <strong>{name ?? 'default'}</strong>
             <p>{description}</p>
-            <a href={link}>Acessar repositório</a>
+            <a href={html_url}>Acessar repositório</a>
         </li>
     );
 }
