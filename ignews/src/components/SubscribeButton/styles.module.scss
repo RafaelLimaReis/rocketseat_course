@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+
+.subscribeButton {
+    height: 4rem;
+    width: 260px;
+    border: 0;
+    border-radius: 2rem;
+    background: $yellow-500;
+    color: $gray-900;
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: filter .2s;
+
+    &:hover {
+        filter: brightness(.8);
+    }
+}
