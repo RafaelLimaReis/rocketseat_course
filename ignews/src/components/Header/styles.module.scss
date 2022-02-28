@@ -35,10 +35,6 @@
                 color: $white;
                 font-weight: bold;
 
-                & + a {
-                    margin-left: 2rem;
-                }
-
                 &::after {
                     content: '';
                     height: 3px;
@@ -49,6 +45,10 @@
                     left: 0;
                     background-color: $yellow-500;
                 }
+            }
+
+            & + a {
+                margin-left: 2rem;
             }
         }
     }
