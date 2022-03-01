@@ -20,7 +20,7 @@ export function SubscribeButton({ priceId }: subscribeButtonProps) {
             return;
         }
 
-        if (session.activeSubscription) {
+        if (session?.activeSubscription) {
             router.push('/posts');
             return;
         }
